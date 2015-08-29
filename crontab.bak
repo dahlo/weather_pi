@@ -24,3 +24,9 @@
 
 # update weather image
 */10 * * * * Rscript /home/dahlo/weather/generate_image.r "http://www.yr.no/sted/Sverige/Uppsala/Uppsala/forecast_hour_by_hour.xml" /home/dahlo/weather/current_weather.png ; python /home/dahlo/weather/display_weather.py /home/dahlo/weather/current_weather.png
+
+# backup the crontab
+0 0 * * * crontab -l > ~/weather/crontab.bak
+
+# backup the weather project
+0 1 * * * cd ~/weather ; git add -A ; git commit -am "Auto commit" ; git pull ; git push
