@@ -9,8 +9,8 @@ outfile = args[2]
 outfile_dim_x = 264
 outfile_dim_y = 176
 
-weather_url = "http://www.yr.no/sted/Sverige/Uppsala/Uppsala/forecast_hour_by_hour.xml"
-outfile = "current_weather.png"
+#weather_url = "http://www.yr.no/sted/Sverige/Uppsala/Uppsala/forecast_hour_by_hour.xml"
+#outfile = "current_weather.png"
 
 # get the forecast
 data = xmlParse(weather_url)

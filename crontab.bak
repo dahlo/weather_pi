@@ -20,7 +20,7 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-@reboot sleep 10 ; python /home/dahlo/weather/print_ip.py ; sleep 5 ; Rscript generate_image.r "http://www.yr.no/sted/Sverige/Uppsala/Uppsala/forecast_hour_by_hour.xml" /home/dahlo/weather/current_weather.png ; python /home/dahlo/weather/display_weather.py /home/dahlo/weather/current_weather.png
+@reboot sleep 10 ; python /home/dahlo/weather/print_ip.py ; sleep 5 ; Rscript /home/dahlo/weather/generate_image.r "http://www.yr.no/sted/Sverige/Uppsala/Uppsala/forecast_hour_by_hour.xml" /home/dahlo/weather/current_weather.png ; python /home/dahlo/weather/display_weather.py /home/dahlo/weather/current_weather.png
 
 # update weather image
 */10 * * * * Rscript /home/dahlo/weather/generate_image.r "http://www.yr.no/sted/Sverige/Uppsala/Uppsala/forecast_hour_by_hour.xml" /home/dahlo/weather/current_weather.png ; python /home/dahlo/weather/display_weather.py /home/dahlo/weather/current_weather.png
@@ -30,3 +30,7 @@
 
 # backup the weather project
 0 1 * * * cd ~/weather ; git add -A ; git commit -am "Auto commit" ; git pull ; git push
+
+# update the personalizations
+0 12 * * * cd ~/.dahlo-home ; git add -A > /dev/null ; git commit -am 'Auto-update' > /dev/null ; git pull > /dev/null ; git push &> /dev/null
+
