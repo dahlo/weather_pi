@@ -42,7 +42,7 @@ png(file=outfile, width=outfile_dim_x, height=outfile_dim_y)
 par(mar=c(1.5,1.7,1.3,1))
 
 # plot the precipitation
-barplot(precipitation, xlab='', ylab='', bty='n', ylim=c(0, 3), axes=F, border=FALSE)
+barplot(precipitation, xlab='', ylab='', bty='n', ylim=c(0, 3), axes=F, border=FALSE, col='#444444')
 
 # plot the line on top of the boxes
 par(new=TRUE)
