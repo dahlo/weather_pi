@@ -9,8 +9,8 @@ outfile = args[2]
 outfile_dim_x = 264
 outfile_dim_y = 176
 
-#weather_url = "http://www.yr.no/sted/Sverige/Uppsala/Uppsala/forecast_hour_by_hour.xml"
-#outfile = "current_weather.png"
+weather_url = "http://www.yr.no/sted/Norge/Hordaland/Bergen/Bergen/forecast_hour_by_hour.xml"
+outfile = "current_weather.png"
 
 # get the forecast
 data = xmlParse(weather_url)
@@ -27,7 +27,13 @@ precipitation = list()
 for(i in 1:26){
 	date = cbind(date, data$forecast$tabular[[i]]$.attrs[[1]])
 	temperature = cbind(temperature, as.numeric(data$forecast$tabular[[i]]$temperature[2]))
-	precipitation = cbind(precipitation, as.numeric(data$forecast$tabular[[i]]$precipitation[1]))
+	if(is.na(data$forecast$tabular[[i]]$precipitation[3])){
+		precipitation = cbind(precipitation, as.numeric(data$forecast$tabular[[i]]$precipitation[1]))
+	}else{
+		precipitation = cbind(precipitation, as.numeric(data$forecast$tabular[[i]]$precipitation[3]))
+	}
+
+	
 }
 date = strptime(date, "%Y-%m-%dT%H:%M:%s")
 temperature = unlist(temperature)
